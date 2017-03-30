@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title>Login/Registration</title>
+</head>
+
+<body>
+    <h1>Welcome!</h1>
+    <!-- with all the data we can then construct a more structured output -->
+    <h3>Register Here!</h3>
+    {% if messages %}
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <form action="{%url 'login_stuff:my_register' %}"  method='POST'>
+    {% csrf_token %}
+        <p><label for="name">Name: <input type="text" name="name"></label></p>
+        <p><label for="email">Email Address: <input type="text" name="email"></label></p>
+        <p><label for="password">Password: <input type="password" name="password"></label></p>
+        <p><label for="password_conf">Confirm Password: <input type="password" name="pwd_conf"></label></p>
+        <p><label for="dob">Date of Birth: <input type="date" name="date"></label></p>
+        <p><input type="submit" value="Register"></p>
+    </form>
+
+    <h3>Already Registered? Login Here!</h3>
+
+    <form action="{%url 'login_stuff:my_login' %}"  method='POST'>
+    {% csrf_token %}
+        <p><label for="email">Email Address: <input type="text" name="email" id="email"></label></p>
+        <p><label for="password">Password: <input type="password" name="password" id="password"></label></p>
+        <p><input type="submit" value="Login"></p>
+    </form>
+</body>
+</html>
